@@ -1,12 +1,17 @@
 [
 	{
-		"name": "Hypixel",
-		"ip": "mc.hypixel.net",
+		"name": "Willow Craft",
+		"ip": "play.willowcraft.net",
 		"type": "PC"
 	},
 	{
-		"name": "CubeCraft",
-		"ip": "play.cubecraft.net",
+		"name": "Tiny Embers",
+		"ip": "play.embers.gg",
+		"type": "PC"
+	},
+	{
+		"name": "Spellbrook",
+		"ip": "play.spellbrook.gg",
 		"type": "PC"
 	}
 ]
