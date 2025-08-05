@@ -27,6 +27,6 @@ RUN addgroup --gid 10043 --system minetrack \
  && chown -R minetrack:minetrack /usr/src/minetrack
 USER minetrack
 
-EXPOSE 8080
+EXPOSE 3000
 
 ENTRYPOINT ["/sbin/tini", "--", "node", "main.js"]
