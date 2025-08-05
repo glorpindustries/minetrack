@@ -7,6 +7,12 @@ services:
     dns:
       - 8.8.8.8
       - 1.1.1.1
+    networks:
+      - minetrack_net
     ports:
       - "80:8080"
     restart: always
+
+networks:
+  minetrack_net:
+    driver: bridge
