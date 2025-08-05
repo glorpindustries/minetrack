@@ -1,32 +1,29 @@
 FROM node:16-alpine
 
-ARG TINI_VER="v0.19.0"
+# Install tini and sqlite3 using Alpine package manager
+RUN apk add --no-cache tini sqlite
 
-# install tini
-ADD https://github.com/krallin/tini/releases/download/$TINI_VER/tini /sbin/tini
-RUN chmod +x /sbin/tini
+# Copy tini to correct location if needed
+# (optional — often already installed with correct path in Alpine)
+# RUN cp /usr/bin/tini /sbin/tini
 
-# install sqlite3
-RUN apt-get update                                                   \
- && apt-get install    --quiet --yes --no-install-recommends sqlite3 \
- && apt-get clean      --quiet --yes                                 \
- && apt-get autoremove --quiet --yes                                 \
- && rm -rf /var/lib/apt/lists/*
+# Set tini as init system
+ENTRYPOINT ["/sbin/tini", "--"]
 
-# copy minetrack files
+# Set working directory
 WORKDIR /usr/src/minetrack
 COPY . .
 
-# build minetrack
+# Build minetrack
 RUN npm install --build-from-source \
  && npm run build
 
-# run as non root
-RUN addgroup --gid 10043 --system minetrack \
- && adduser  --uid 10042 --system --ingroup minetrack --no-create-home --gecos "" minetrack \
+# Create non-root user
+RUN addgroup -g 10043 minetrack \
+ && adduser -D -u 10042 -G minetrack minetrack \
  && chown -R minetrack:minetrack /usr/src/minetrack
 USER minetrack
 
 EXPOSE 8080
 
-ENTRYPOINT ["/sbin/tini", "--", "node", "main.js"]
+CMD ["node", "main.js"]
