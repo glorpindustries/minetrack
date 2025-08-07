@@ -1,5 +1,5 @@
 @import url(npm:uplot/dist/uPlot.min.css);
-
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap');
 @import url(../css/icons.css);
 
 * {
@@ -9,7 +9,7 @@
 
 :root {
   --color-dark-gray: #A3A3A3;
-  --color-gold: #FFD700;
+  --color-gold: #89FF71;
   --color-dark-purple: #6c5ce7;
   --color-light-purple: #a29bfe;
   --color-dark-blue: #0984e3;
@@ -47,13 +47,16 @@ body {
   }
 
   body {
-    background: #1c1b1c;
+    background: #252723;
     color: #FFF;
   }
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
   font-size: 18px;
   font-weight: 300;
   min-width: 800px;
